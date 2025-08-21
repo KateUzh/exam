@@ -25,7 +25,7 @@ public class JavaController {
         return questionService.remove(question, answer);
     }
 
-    @GetMapping("/question/{question},{answer}")
+    @PostMapping ("/question/{question},{answer}")
     public Collection<Question> add(@RequestParam("question") String question, @RequestParam("answer") String answer) {
         return questionService.add(question, answer);
     }

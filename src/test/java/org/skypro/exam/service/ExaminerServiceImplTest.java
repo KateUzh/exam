@@ -19,9 +19,9 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class ExaminerServiceImplTest {
     @Mock
-    QuestionService questionService;
+    private QuestionService questionService;
     @InjectMocks
-    ExaminerServiceImpl examinerServiceImpl;
+    private ExaminerServiceImpl examinerServiceImpl;
 
     @Test
     void giveAmount1_whenGetQuestions() throws BadRequestException {

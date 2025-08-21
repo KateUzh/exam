@@ -8,8 +8,8 @@ import java.util.*;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
-    QuestionService questionService;
-    Random random = new Random();
+    private final QuestionService questionService;
+    private final Random random = new Random();
 
     public ExaminerServiceImpl(QuestionService questionService) {
         this.questionService = questionService;
@@ -18,13 +18,12 @@ public class ExaminerServiceImpl implements ExaminerService {
     @Override
     public Collection<Question> getQuestions(int amount) throws BadRequestException {
         Set<Question> result = new HashSet<>();
-        if (amount <= questionService.getAll().size()) {
-            int i = 0;
-            while (result.size() < amount) {
-                result.add(questionService.getRandomQuestion());
-                i++;
-            }
-        } else throw new BadRequestException("Вопросов должно быть не больше " + questionService.getAll().size());
+        if (amount > questionService.getAll().size()) {
+            throw new BadRequestException("Вопросов должно быть не больше " + questionService.getAll().size());
+        }
+        while (result.size() < amount) {
+            result.add(questionService.getRandomQuestion());
+        }
         return result;
     }
 }
