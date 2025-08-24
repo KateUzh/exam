@@ -50,7 +50,7 @@ public class JavaQuestionService implements QuestionService {
     @Override
     public Set<Question> add(String question, String answer) {
         if (questions.contains(new Question(question, answer))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Такой вопрос уже есть.");
         }
         questions.add(new Question(question, answer));
         return questions;
